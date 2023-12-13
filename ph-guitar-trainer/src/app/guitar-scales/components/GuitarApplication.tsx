@@ -1,0 +1,113 @@
+"use client";
+
+import React from "react";
+import FretboardComponent from "./FretboardComponent";
+import { Fretboard } from "../_guitar/fretboard";
+import { Note, NoteObject, notes } from "../_guitar/notes";
+import NoteSquare from "./NoteSquare";
+import ListOfScales from "./ListOfScales";
+
+export default function GuitarApplication() {
+	const [fretboard, setFretboard] = React.useState(new Fretboard(12));
+
+	const [markedNotes, setMarkedNotes] = React.useState<Note[]>([]);
+	/**
+	 * Adds a note to the markedNotes array if the note is not already in the array
+	 * it doesn't get added
+	 * @param note: Note (enum)
+	 */
+	const addMarkedNote = (note: Note) => {
+		if (!markedNotes.includes(note)) {
+			setMarkedNotes((prev) => [...prev, note]);
+		}
+	};
+	/**
+	 * Removes a note from the markedNotes array if the note is in the array
+	 * it doesn't get removed
+	 * @param note: Note (enum)
+	 */
+	const removeMarkedNote = (note: Note) => {
+		if (markedNotes.includes(note)) {
+			setMarkedNotes((prev) => prev.filter((n) => n !== note));
+		}
+	};
+
+	return (
+		<div>
+			<section className="mb-12">
+				<h2>All notes</h2>
+				<p>
+					Here you have every note in western music. Click on a note
+					to mark it on the fretboard
+				</p>
+				<ul className="flex gap-1 overflow-x-auto">
+					{notes.map((note) => (
+						<li>
+							<button
+								key={`note-option-${note.note}`}
+								onClick={() => {
+									markedNotes.includes(note.note)
+										? setMarkedNotes(
+												markedNotes.filter(
+													(n) => n !== note.note
+												)
+										  )
+										: setMarkedNotes((prev) => [
+												...prev,
+												note.note,
+										  ]);
+								}}
+							>
+								<NoteSquare
+									note={note.note}
+									highlight={markedNotes.includes(note.note)}
+									highlightedColor={note.color}
+								/>
+							</button>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<section className="mb-4 flex gap-4 flex-wrap">
+				<button
+					className={`border border-black transition-all rounded shadow-sm p-1 hover:bg-white hover:text-black ${
+						markedNotes.length > 0 && "bg-red-600 text-slate-100"
+					}`}
+					onClick={() => setMarkedNotes([])}
+				>
+					Clear highlighted notes
+				</button>
+				<div className="option gap-1 flex items-center">
+					<label htmlFor="fret-count">Amount Frets: </label>
+					<input
+						type="number"
+						id="fret-count"
+						className="border border-black rounded shadow-sm p-1"
+						value={fretboard.frets}
+						onChange={(e) => {
+							let newFretboard = new Fretboard(
+								parseInt(e.target.value)
+							);
+							setFretboard(newFretboard);
+						}}
+					/>
+				</div>
+			</section>
+
+			<FretboardComponent
+				fretboard={fretboard}
+				setFretboard={setFretboard}
+				markedNotes={markedNotes}
+				addMarkedNote={addMarkedNote}
+				removeMarkedNote={removeMarkedNote}
+			/>
+
+			<ListOfScales
+				addMarkedNote={addMarkedNote}
+				removeMarkedNote={removeMarkedNote}
+				markedNotes={markedNotes}
+			/>
+		</div>
+	);
+}
