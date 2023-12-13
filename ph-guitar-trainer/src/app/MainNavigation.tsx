@@ -5,7 +5,7 @@ import HomeIcon from "./(icons)/home-icon";
 export default function MainNavigation() {
 	return (
 		<>
-			<header className="">
+			<div className="">
 				<nav className="shadow-lg flex gap-2 my-7 mx-page-side-margin p-4 bg-main-mono-dark bg-opacity-90  backdrop-blur-lg bg-opacity-600 text-slate-100 rounded-full items-center justify-between">
 					<ul className="flex gap-2">
 						<li className="p-2 rounded text-lg">
@@ -26,7 +26,7 @@ export default function MainNavigation() {
 						</li>
 					</ul>
 				</nav>
-			</header>
+			</div>
 		</>
 	);
 }

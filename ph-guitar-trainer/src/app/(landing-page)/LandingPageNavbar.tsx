@@ -10,14 +10,19 @@ const dancingFont = Dancing_Script({ subsets: ["latin"] });
 export default function MainNavigation() {
 	return (
 		<>
-			<header className="fixed z-9999 w-full z-[9999]">
+			<section id="header" className="fixed z-9999 w-full z-[9999]">
 				<nav className=" shadow-lg flex gap-2 my-7 mx-page-side-margin p-4 bg-black bg-opacity-50 border border-slate-100 border-opacity-75  backdrop-blur-md bg-opacity-600 text-slate-100 rounded-full items-center justify-between">
 					<span className="flex gap-1 font-bold items-center">
 						<EigthNoteIcon className="w-6 h-6" strokeWidth={2} />
-						<span
+						{/* <span
 							className={`text-lg font-semibold text-xl ${dancingFont.className}`}
 						>
 							PH
+						</span> */}
+						<span
+							className={`font-semibold text-xl ${dancingFont.className}`}
+						>
+							Fretboard Mastery
 						</span>
 					</span>
 					<ul className="flex gap-8 items-center">
@@ -32,7 +37,7 @@ export default function MainNavigation() {
 						</li>
 					</ul>
 				</nav>
-			</header>
+			</section>
 		</>
 	);
 }

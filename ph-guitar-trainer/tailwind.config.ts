@@ -16,10 +16,12 @@ const config: Config = {
       colors: {
         'main-mono-dark': "#303B39",
         'brand-color': "#53D4C2",
-        'landing-bg': "#FFFFFF"
+        'landing-bg': "#FFFFFF",
+        'text-ligth': "slate-100"
       },
       margin: {
         'page-side-margin': '2.5rem',
+        'landing-page-flow': '5rem',
       }
     },
   },
