@@ -8,7 +8,9 @@ import NoteSquare from "./NoteSquare";
 import ListOfScales from "./ListOfScales";
 
 export default function GuitarApplication() {
-	const [fretboard, setFretboard] = React.useState(new Fretboard(12));
+	const [fretboard, setFretboard] = React.useState(
+		new Fretboard(12, 6, [Note.E, Note.A, Note.D, Note.G, Note.B, Note.E])
+	);
 
 	const [markedNotes, setMarkedNotes] = React.useState<Note[]>([]);
 	/**
@@ -32,9 +34,74 @@ export default function GuitarApplication() {
 		}
 	};
 
+	const [tuningInput, setTuningInput] =
+		React.useState<string>("E, A, D, G, B, E");
+
 	return (
 		<div>
 			<section className="mb-12">
+				<h2>Tuning</h2>
+				<p>
+					Here you can change the tuning of the guitar. The default
+					tuning is standard tuning (EADGBE) Highest string first -
+					lowest string last Comma seperated and in Capital letters
+				</p>
+				<div>
+					<form
+						onSubmit={(e) => e.preventDefault()}
+						className="flex gap-2 flex-wrap"
+					>
+						<input
+							type="text"
+							id="tuning"
+							className="border border-black rounded shadow-sm p-1"
+							value={tuningInput}
+							onChange={(e) => setTuningInput(e.target.value)}
+						/>
+						<button
+							type="submit"
+							className="bg-indigo-600 text-white p-2 rounded"
+							onClick={() => {
+								let newFretboard = new Fretboard(
+									fretboard.frets,
+									fretboard.strings,
+									tuningInput
+										.split(",")
+										.map((note) => note.trim())
+										.map(
+											(note) =>
+												Note[note as keyof typeof Note]
+										)
+								);
+								setFretboard(newFretboard);
+							}}
+						>
+							Use New Tuning
+						</button>
+						<button
+							className="bg-black text-white p-2 rounded"
+							onClick={() => {
+								setTuningInput("E, A, D, G, B, E");
+								let newFretboard = new Fretboard(
+									fretboard.frets,
+									fretboard.strings,
+									[
+										Note.E,
+										Note.A,
+										Note.D,
+										Note.G,
+										Note.B,
+										Note.E,
+									]
+								);
+								setFretboard(newFretboard);
+							}}
+						>
+							Reset Tuning to Standard (EADGBE)
+						</button>
+					</form>
+				</div>
+
 				<h2>All notes</h2>
 				<p>
 					Here you have every note in western music. Click on a note

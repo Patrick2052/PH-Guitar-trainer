@@ -8,13 +8,15 @@ export class Fretboard {
     frets: number
     // tuning: Note[] = [Note.E, Note.A, Note.D, Note.G, Note.B, Note.E];
     // tuning starts with the highest string
-    tuning: Note[] = [Note.E, Note.B, Note.G, Note.D, Note.A, Note.E];
+    // tuning: Note[] = [Note.E, Note.B, Note.G, Note.D, Note.A, Note.E];
+    tuning: Note[];
     fretboard: FretboardType;
 
-    constructor(amountFrets: number = 12, amountStrings: number = 6) {
+    constructor(amountFrets: number = 12, amountStrings: number = 6, tuning: Note[] = [Note.E, Note.B, Note.G, Note.D, Note.A, Note.E]) {
         // this.tuning = tuning;
         this.strings = amountStrings;
         this.frets = amountFrets;
+        this.tuning = tuning;
         this.fretboard = this.createFretboard(this.strings, this.frets);
     }
 
