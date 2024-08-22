@@ -44,8 +44,9 @@ export default function GuitarApplication() {
 				<h2>Tuning</h2>
 				<p>
 					Here you can change the tuning of the guitar. The default
-					tuning is standard tuning (EADGBE) Highest string first -
-					lowest string last Comma seperated and in Capital letters
+					tuning is standard tuning (E, B, G, D, A, E) Highest string
+					first - lowest string last Comma seperated and in Capital
+					letters
 				</p>
 				<div>
 					<form
@@ -98,7 +99,7 @@ export default function GuitarApplication() {
 								setFretboard(newFretboard);
 							}}
 						>
-							Reset Tuning to Standard (EADGBE)
+							Reset Tuning to Standard ({defaultTuning})
 						</button>
 					</form>
 				</div>
