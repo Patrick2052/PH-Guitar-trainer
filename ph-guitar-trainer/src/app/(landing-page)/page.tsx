@@ -95,6 +95,17 @@ export default function Home() {
 
 			<DemoFretboardSection />
 
+			<section className="mt-8">
+				<Link
+					href="/guitar-scales"
+					className="px-10 py-4 
+							bg-rose-500							
+							bg-opacity-85 backdrop-blur-xl text-slate-50 shadow-lg text-xl font-semibold rounded-full hover:border-2 border-rose-500 hover:text-rose-500 hover:bg-slate-50 hover:bg-opacity-60 hover:backdrop-blur-xl transition-all duration-300 ease-in-hover:out"
+				>
+					Go to the main app -{">"}
+				</Link>
+			</section>
+
 			<section
 				id="about"
 				className="flex gap-4 flex-col items-center mt-landing-page-flow"

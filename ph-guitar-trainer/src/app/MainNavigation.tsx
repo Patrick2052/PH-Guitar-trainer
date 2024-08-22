@@ -19,10 +19,10 @@ export default function MainNavigation() {
 					</ul>
 					<ul className="flex gap-2 items-center">
 						<li className="rounded-full border border-slate-100 px-4 py-2">
-							<Link href="/login">Login</Link>
+							<Link href="/login">Login (wip)</Link>
 						</li>
 						<li className="rounded-full bg-teal-50 text-main-mono-dark px-4 py-2">
-							<Link href="/register">Register</Link>
+							<Link href="/register">Register (wip)</Link>
 						</li>
 					</ul>
 				</nav>

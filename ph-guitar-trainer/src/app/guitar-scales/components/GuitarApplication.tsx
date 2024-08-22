@@ -9,7 +9,7 @@ import ListOfScales from "./ListOfScales";
 
 export default function GuitarApplication() {
 	const [fretboard, setFretboard] = React.useState(
-		new Fretboard(12, 6, [Note.E, Note.A, Note.D, Note.G, Note.B, Note.E])
+		new Fretboard(12, 6, [Note.E, Note.B, Note.G, Note.D, Note.A, Note.E])
 	);
 
 	const [markedNotes, setMarkedNotes] = React.useState<Note[]>([]);
@@ -34,8 +34,9 @@ export default function GuitarApplication() {
 		}
 	};
 
-	const [tuningInput, setTuningInput] =
-		React.useState<string>("E, A, D, G, B, E");
+	const defaultTuning = "E, B, G, D, A, E";
+
+	const [tuningInput, setTuningInput] = React.useState<string>(defaultTuning);
 
 	return (
 		<div>
@@ -81,16 +82,16 @@ export default function GuitarApplication() {
 						<button
 							className="bg-black text-white p-2 rounded"
 							onClick={() => {
-								setTuningInput("E, A, D, G, B, E");
+								setTuningInput(defaultTuning);
 								let newFretboard = new Fretboard(
 									fretboard.frets,
 									fretboard.strings,
 									[
 										Note.E,
-										Note.A,
-										Note.D,
-										Note.G,
 										Note.B,
+										Note.G,
+										Note.D,
+										Note.A,
 										Note.E,
 									]
 								);
